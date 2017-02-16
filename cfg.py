@@ -1,10 +1,6 @@
 HOST = "irc.twitch.tv"
 PORT = 6667
-#PASS = "oauth:r38w99gbqei4os4emllj8l48oofs0y"
-#NAME = "samwise800"
-#PASS = "oauth:xvkb53a4r5czlsqmiyeencxgqx9ora"
-#NAME = "nick__guers"
-PASS = "oauth:ev5m3hj7efysmtmel42hw58bigobyc"
+PASS = "oauth:xxx"
 NAME = "siegegamblebot"
 CHAN = "ice_poseidon"
 OWNERS = ["samwise800"]

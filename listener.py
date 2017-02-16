@@ -37,4 +37,5 @@ class Listener:
                         else:
                             print(response)
             commands.cycle()
+            self.channel.do_queue()
             time.sleep(0.1)

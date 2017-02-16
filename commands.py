@@ -49,9 +49,7 @@ def do(msg, user):
     if msg.startswith("!give"):
         p = re.compile(r"^!give @?(?P<u>\w+) (?P<n>\d+)")
         if p.search(msg):
-            print("ye")
             user_name = p.search(msg).group('u')
-            print(user_name)
             to_user = User(user_name)
             n = int(p.search(msg).group('n'))
             to_user.set_money_rel(n)

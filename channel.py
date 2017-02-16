@@ -2,9 +2,11 @@ import socket
 import cfg
 from listener import Listener
 import time
+from collections import deque
 
 
 last_chat = 0
+queue = deque()
 
 class Channel:
 
@@ -31,9 +33,25 @@ class Channel:
 
     def chat(self, msg):
         global last_chat
-        if (time.time() - last_chat) > cfg.DELAY:
+        if self.can_chat():
             self.s.send("PRIVMSG #{} :{}\r\n".format(cfg.CHAN, msg).encode())
             last_chat = time.time()
+        elif cfg.QUEUE:
+            print("message added to queue")
+            queue.append(msg)
+        else:
+            print("message discarded")
 
     def listen(self):
         self.l.listen()
+
+    def do_queue(self):
+        if cfg.QUEUE and len(queue)>0:
+            if self.can_chat():
+                msg = queue.popleft()
+                self.chat(msg)
+                print("message sent from queue")
+
+    def can_chat(self):
+        return (time.time() - last_chat) > cfg.DELAY
+
